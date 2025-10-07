@@ -75,7 +75,8 @@ with tab1:
             label = prediction("best_model_saved.h5", image)
 
             #displaying the predicted label
-            st.subheader("Your Classification is **{}**".format(label))
+            st.success("Your Classification is **{}**".format(label))
+            
 
 with tab2:
     #camera input
@@ -89,6 +90,6 @@ with tab2:
         label = prediction("best_model_saved.h5", cam_image)
 
         #displaying the predicted label
-        st.subheader("Your Classification is **{}**".format(label))
+        st.success("Your Classification is **{}**".format(label))
 
 
