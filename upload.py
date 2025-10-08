@@ -7,6 +7,7 @@ from supabase import Client, create_client
 BUCKET_NAME = st.secrets.get("SUPABASE_BUCKET", "Butterfly_Classification")
 TABLE_NAME = st.secrets.get("SUPABASE_TABLE", "ButterflyEntry")
 
+client = create_client(st.secrets["SUPABASE_URL"], st.secrets["SUPABASE_KEY"])
 
 def record_logo_entry(client: Client, email: str, class_label: str, image_name: str ):
     payload = {

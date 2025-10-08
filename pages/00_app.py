@@ -5,13 +5,15 @@ from keras.applications.mobilenet_v2 import preprocess_input
 from PIL import Image
 import importlib
 import requests
-
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from upload import upload_file, record_logo_entry
 from supabase import Client, create_client
 import io
 
 
-client = create_client("https://bxihryeeefwyomrwbiwe.supabase.co", "sb_secret_O2aviL26RVKq2QSW2DdQ6g_Q7eAqEYL")
+#client = create_client("https://bxihryeeefwyomrwbiwe.supabase.co", "sb_secret_O2aviL26RVKq2QSW2DdQ6g_Q7eAqEYL")
 
 def prediction(modelname,sample_image,IMG_SIZE=(224,224)):
     #labels
@@ -30,7 +32,7 @@ def prediction(modelname,sample_image,IMG_SIZE=(224,224)):
         #loading the .h5 model
         load_model = tf.keras.models.load_model(modelname)
 
-        sample_image = Image.open(sample_image)
+        sample_image = Image.open(sample_image).convert("RGB")
         img_array = sample_image.resize(IMG_SIZE)
         img_batch = np.expand_dims(img_array, axis = 0) # Rows
         image_batch = img_batch.astype(np.float32)
@@ -101,5 +103,8 @@ with tab2:
 
         #displaying the predicted label
         st.success("Your Classification is **{}**".format(label))
+        if st.success:
+            if st.button("Say hello"):
+                upload_file(client, image, "ADONIS", "@gmail")
 
 
