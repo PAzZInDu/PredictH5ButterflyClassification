@@ -6,6 +6,12 @@ from PIL import Image
 import importlib
 import requests
 
+from upload import upload_file, record_logo_entry
+from supabase import Client, create_client
+import io
+
+
+client = create_client("https://bxihryeeefwyomrwbiwe.supabase.co", "sb_secret_O2aviL26RVKq2QSW2DdQ6g_Q7eAqEYL")
 
 def prediction(modelname,sample_image,IMG_SIZE=(224,224)):
     #labels
@@ -76,6 +82,10 @@ with tab1:
 
             #displaying the predicted label
             st.success("Your Classification is **{}**".format(label))
+
+            if st.success:
+                if st.button("Say hello"):
+                    upload_file(client, image, "ADONIS", "@gmail")
             
 
 with tab2:
