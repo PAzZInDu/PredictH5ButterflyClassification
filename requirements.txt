@@ -1,5 +1,6 @@
 keras==3.11.3
 numpy
+supabase
 scikit-learn==1.7.0
 tensorflow==2.20.0
 streamlit
