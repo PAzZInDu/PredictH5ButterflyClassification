@@ -12,8 +12,10 @@ from upload import upload_file, record_logo_entry
 from supabase import Client, create_client
 import io
 
-
+SUPABASE_URL = st.secrets["SUPABASE_URL"]
+SUPABASE_URL = st.secrets["SUPABASE_KEY"]
 #client = create_client("https://bxihryeeefwyomrwbiwe.supabase.co", "sb_secret_O2aviL26RVKq2QSW2DdQ6g_Q7eAqEYL")
+client = create_client(SUPABASE_URL, SUPABASE_URL)
 
 def prediction(modelname,sample_image,IMG_SIZE=(224,224)):
     #labels
