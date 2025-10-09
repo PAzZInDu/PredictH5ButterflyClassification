@@ -3,8 +3,7 @@ import authlib
 
 #from app import chat
 
-IMAGE_ADDRESS = "https://img.goodfon.com/original/1920x1080/8/71/fireman-fire-man.jpg"
-
+IMAGE_ADDRESS = "https://natureconservancy-h.assetsadobe.com/is/image/content/dam/tnc/nature/en/photos/s/h/shutterstock_1512536354.jpg?crop=0%2C317%2C2664%2C1465&wid=1300&hei=715&scl=2.0492307692307694"
 # title
 #st.title("Google Login App")
 
