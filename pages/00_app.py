@@ -12,10 +12,17 @@ from upload import upload_file, record_logo_entry
 from supabase import Client, create_client
 import io
 
+
+if not st.user.is_logged_in:
+    st.error("Please log in to access the App")
+    st.stop()
+
+
 SUPABASE_URL = st.secrets["SUPABASE_URL"]
 SUPABASE_URL = st.secrets["SUPABASE_KEY"]
 #client = create_client("https://bxihryeeefwyomrwbiwe.supabase.co", "sb_secret_O2aviL26RVKq2QSW2DdQ6g_Q7eAqEYL")
 client = create_client(SUPABASE_URL, SUPABASE_URL)
+
 
 def prediction(modelname,sample_image,IMG_SIZE=(224,224)):
     #labels
@@ -29,6 +36,9 @@ def prediction(modelname,sample_image,IMG_SIZE=(224,224)):
     "PURPLISH_COPPER","QUESTION_MARK","RED_ADMIRAL","RED_CRACKER","RED_POSTMAN","RED_SPOTTED_PURPLE","SCARCE_SWALLOW","SILVER_SPOT_SKIPPER",
     "SLEEPY_ORANGE","SOOTYWING","SOUTHERN_DOGFACE","STRAITED_QUEEN","TROPICAL_LEAFWING","TWO_BARRED_FLASHER","ULYSES","VICEROY",
     "WOOD_SATYR","YELLOW_SWALLOW_TAIL"] #35 labels
+
+    labels.sort()
+
 
     try:
         #loading the .h5 model
@@ -89,7 +99,7 @@ with tab1:
 
             if st.success:
                 if st.button("Say hello"):
-                    upload_file(client, image, "ADONIS", "@gmail")
+                    upload_file(client, image, label, st.user.email)
             
 
 with tab2:
@@ -107,6 +117,6 @@ with tab2:
         st.success("Your Classification is **{}**".format(label))
         if st.success:
             if st.button("Say hello"):
-                upload_file(client, image, "ADONIS", "@gmail")
+                upload_file(client, image, label, st.user.email)
 
 
