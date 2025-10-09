@@ -1,6 +1,5 @@
 import streamlit as st
 import authlib
-from app import run_app
 
 #from app import chat
 
@@ -24,4 +23,4 @@ else:
         st.logout()
     #chat()
 
-    run_app()
+    
